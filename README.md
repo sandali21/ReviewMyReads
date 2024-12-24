@@ -1,4 +1,4 @@
-# coullax
+# Coullax
 Coding Test for Software Engineer Intern
 
 # **Book Review App**
@@ -76,13 +76,5 @@ cd coullex
    npm start
    ```
    The frontend will run at `http://localhost:3000`.
-
----
-
-## **Usage**
-1. Open the application in your browser at `http://localhost:3000`.
-2. Add a new book review using the **Add Review** button.
-3. Browse through the list of reviews.
-4. Edit or delete existing reviews using the provided options.
 
 ---
