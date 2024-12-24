@@ -1,0 +1,54 @@
+.header{
+    padding: 30px;
+}
+
+.reviews{
+    margin-left: 30px;
+    margin-top: 30px;
+}
+
+.reviewlist{
+    display:flex;
+    margin-top:20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.reviewBox{
+    width:275px;
+    border-radius: 20px;
+    background-color: white;
+    margin: 20px;
+    height: auto;
+    box-shadow: 2px 5px 5px 5px #dddcdc;
+    padding: 20px;
+}
+
+.star{
+    color: gold;
+    font-size: 30px;
+}
+
+.rate{
+    font-size: 20px;
+}
+
+.reviewBox p{
+    font-size: 14px;
+}
+
+.form{
+    background-color: #ffffff;
+    height: auto;
+    width:450px;
+    margin-top:10px;
+    margin-left: 10px;
+    border-radius: 20px; 
+    padding-top: 50px;
+    padding-left: 50px;
+}
+
+.img{
+    width:50%;
+    float: right;
+}
