@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate , useParams } from 'react-router-dom';
 import axios from 'axios';
 import Header from './Header';
 import '../styles/my.css';
-import { message } from 'antd';
+import { Modal, message } from 'antd';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
 
-const ReviewList = () => {
+function ReviewList(){
   const [reviews, setReviews] = useState([]);
 
   const navigate = useNavigate();
+
+  const {id} = useParams();
 
   useEffect(() => {
     axios.get('http://localhost:5000/reviews').then((response) => {
@@ -16,10 +19,29 @@ const ReviewList = () => {
     });
   }, []);
 
-  const handleDelete = (id) => {
-    axios.delete(`http://localhost:5000/reviews/${id}`);
-    setReviews((prevReviews) => prevReviews.filter((review) => review.id !== id));
-    message.success('Review Deleted!');
+  const handleDelete = (e) => {
+    
+    Modal.confirm({
+        title: 'Warning',
+        icon: <ExclamationCircleOutlined />,
+        content: 'Do you want to delete the review?',
+        okText: 'Yes',
+        cancelText: 'No',
+        onOk: () => {
+            axios.delete(`http://localhost:5000/reviews/${id}`)
+            .then((response) => {
+                console.log(response);
+                message.success('Review Deleted!');
+                navigate(`/`);
+            })
+            .catch((error) => {
+                console.error('Error deleting post:', error);
+            });
+        },
+        onCancel: () => {
+            message.error('Post Deletion Cancelled!');
+        },
+    });
   };
 
   return (

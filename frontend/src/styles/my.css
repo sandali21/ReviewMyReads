@@ -10,7 +10,7 @@
 .reviewlist{
     display:flex;
     margin-top:20px;
-    flex-wrap: wrap;
+    flex-wrap:wrap;
     gap: 15px;
 }
 

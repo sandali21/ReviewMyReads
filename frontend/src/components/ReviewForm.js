@@ -4,6 +4,7 @@ import axios from 'axios';
 import Header from './Header';
 import '../styles/my.css';
 import addreview from '../images/img2.png';
+import { message } from 'antd';
 
 const ReviewForm = () => {
   const [formData, setFormData] = useState({
@@ -17,7 +18,9 @@ const ReviewForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:5000/reviews', formData).then(() => {
+    axios.post('http://localhost:5000/reviews', {formData})
+    .then(() => {
+      message.success('New Review Added!');
       navigate('/');
     });
   };
