@@ -7,23 +7,23 @@
     margin-top: 30px;
 }
 
-.reviewlist{
-    display:flex;
-    margin-top:20px;
-    flex-wrap:wrap;
-    gap: 15px;
-}
-
-.reviewBox{
-    width:275px;
-    border-radius: 20px;
-    background-color: white;
-    margin: 20px;
-    height: auto;
-    box-shadow: 2px 5px 5px 5px #dddcdc;
+.reviewlist {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
     padding: 20px;
 }
-
+  
+  
+.reviewBox {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    background-color: white;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+  
+  
 .star{
     color: gold;
     font-size: 30px;
@@ -34,7 +34,7 @@
 }
 
 .reviewBox p{
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .form{

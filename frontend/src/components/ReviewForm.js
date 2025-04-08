@@ -4,7 +4,6 @@ import axios from 'axios';
 import Header from './Header';
 import '../styles/my.css';
 import addreview from '../images/img2.png';
-import { message } from 'antd';
 
 const ReviewForm = () => {
   const [formData, setFormData] = useState({
@@ -18,12 +17,17 @@ const ReviewForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:5000/reviews', {formData})
-    .then(() => {
-      message.success('New Review Added!');
-      navigate('/');
-    });
+  
+    axios.post('http://localhost:5000/reviews', formData)
+      .then(() => {
+        alert('New Review Added!');
+        navigate('/');
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,7 +37,7 @@ const ReviewForm = () => {
   return (
     <div>
     <Header/>
-    <div clssName= 'addform'>
+    <div className= 'addform'>
       <div> 
           <img src={addreview} alt='' className='img'/>
       </div>

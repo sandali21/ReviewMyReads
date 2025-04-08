@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate , useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Header from './Header';
 import '../styles/my.css';
-import { Modal, message } from 'antd';
-import { ExclamationCircleOutlined } from '@ant-design/icons';
 
 function ReviewList(){
   const [reviews, setReviews] = useState([]);
 
   const navigate = useNavigate();
-
-  const {id} = useParams();
 
   useEffect(() => {
     axios.get('http://localhost:5000/reviews').then((response) => {
@@ -19,30 +15,18 @@ function ReviewList(){
     });
   }, []);
 
-  const handleDelete = (e) => {
-    
-    Modal.confirm({
-        title: 'Warning',
-        icon: <ExclamationCircleOutlined />,
-        content: 'Do you want to delete the review?',
-        okText: 'Yes',
-        cancelText: 'No',
-        onOk: () => {
-            axios.delete(`http://localhost:5000/reviews/${id}`)
-            .then((response) => {
-                console.log(response);
-                message.success('Review Deleted!');
-                navigate(`/`);
-            })
-            .catch((error) => {
-                console.error('Error deleting post:', error);
-            });
-        },
-        onCancel: () => {
-            message.error('Post Deletion Cancelled!');
-        },
+  const handleDelete = (reviewId) => {
+    axios.delete(`http://localhost:5000/reviews/${reviewId}`)
+      .then(() => {
+        setReviews((prev) => prev.filter((rev) => rev.id !== reviewId));
+        alert('Review Deleted!');
+        navigate('/');
+    })
+    .catch((error) => {
+      console.error('Error deleting review:', error);
     });
   };
+  
 
   return (
     <div>
@@ -51,7 +35,6 @@ function ReviewList(){
       <h3>Book Reviews</h3>
       </div>
       <div  className='reviewlist'>
-      <br/> 
       {reviews.length === 0 ? (
         <p> No reviews available. Add some to get started! </p>
       ) : (reviews.map((review) => (

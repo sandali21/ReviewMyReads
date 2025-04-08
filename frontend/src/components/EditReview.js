@@ -3,7 +3,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Header from './Header';
 import '../styles/my.css';
-import { message } from 'antd';
 import editreview from '../images/img2.png';
 
 const ReviewForm = () => {
@@ -34,33 +33,31 @@ const ReviewForm = () => {
     }
   }, [id]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     const editReview = {
-        title:title,
-        author:author,
-        rating:rating,
-        reviewText:reviewText,
-        dateAdded:dateAdded
+      title,
+      author,
+      rating,
+      reviewText,
+      dateAdded
     };
-    console.log(editReview);
-    
+  
     try {
-        axios.put(`http://localhost:5000/reviews/${id}`, editReview);
-        message.success('Review Updated!');
-        navigate('/');
-        
+      await axios.put(`http://localhost:5000/reviews/${id}`, editReview);
+      alert('Review Updated!');
+      navigate('/');
     } catch (error) {
-        message.error('Failed!');
-        console.log(error.message);
+      console.error(error.message);
     }
   };
+  
 
   return (
     <div>
     <Header/>
-    <div clssName= 'addform'>
+    <div className= 'addform'>
     <div> 
         <img src={editreview} alt='' className='img'/>
     </div>
