@@ -1,6 +1,8 @@
 # **Book Review App**
 Coding Test for Software Engineer Intern
 
+View Live App [https://prismatic-crepe-584145.netlify.app/]
+
 ## **Description**
 The Book Review App is a full-stack web application that allows users to browse, add, edit, and delete reviews for their favorite books. It provides an intuitive platform for users to share their opinions, rate books, and discover reviews from the community. The app is built using the MERN stack (SQL, Express.js, React.js, Node.js) and includes basic CRUD functionality with a responsive user interface.
 
